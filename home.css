@@ -272,5 +272,8 @@ img{
    .txt p{
       font-size: 10px;
    }
+   .dot{
+      margin: 0 1px;
+   }
 	
 }
