@@ -9,39 +9,46 @@ window.onscroll = ()=>{
     navlist.classList.remove("open");
 }
 
-let words = document.querySelectorAll(".word");
-words.forEach((word)=>{
-    let letters = word.textContent.split("");
-    word.textContent="";
-    letters.forEach((letter)=>{
-        let span = document.createElement("span");
-        span.textContent = letter;
-        span.className = "letter";
-        word.append(span);
-    });
-});
+const myslide = document.querySelectorAll('.myslide'),
+	  dot = document.querySelectorAll('.dot');
+let counter = 1;
+slidefun(counter);
 
-let currenWordIndex = 0;
-let maxWordIndex = words.length -1;
-words[currenWordIndex].style.opacity = "1";
+let timer = setInterval(autoSlide, 8000);
+function autoSlide() {
+	counter += 1;
+	slidefun(counter);
+}
+function plusSlides(n) {
+	counter += n;
+	slidefun(counter);
+	resetTimer();
+}
+function currentSlide(n) {
+	counter = n;
+	slidefun(counter);
+	resetTimer();
+}
+function resetTimer() {
+	clearInterval(timer);
+	timer = setInterval(autoSlide, 8000);
+}
 
-let changeText = ()=>{
-    let currenWord = words[currenWordIndex];
-    let nextWord = currenWordIndex === maxWordIndex ? words[0] : words[currenWordIndex + 1];
-
-    Array.from(currenWord.children).forEach((letter,i)=>{
-        setTimeout(()=>{
-            letter.className = "letter out";
-        },i * 80);
-    });
-    nextWord.style.opacity="1";
-    Array.from(nextWord.children).forEach((letter,i)=>{
-        letter.className = "letter behind";
-        setTimeout(()=>{
-            letter.className = "letter in";
-        },340 + i * 80);
-    });
-    currenWordIndex = currenWordIndex ===maxWordIndex ? 0 :currenWordIndex + 1;
-};
-changeText();
-setInterval(changeText,3000)
+function slidefun(n) {
+	
+	let i;
+	for(i = 0;i<myslide.length;i++){
+		myslide[i].style.display = "none";
+	}
+	for(i = 0;i<dot.length;i++) {
+		dot[i].className = dot[i].className.replace(' active', '');
+	}
+	if(n > myslide.length){
+	   counter = 1;
+	   }
+	if(n < 1){
+	   counter = myslide.length;
+	   }
+	myslide[counter - 1].style.display = "block";
+	dot[counter - 1].className += " active";
+}
