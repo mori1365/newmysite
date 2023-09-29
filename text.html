@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #displayText {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px;
+      border: 2px solid #333;
+      background-color: #f7f7f7;
+      color: #333;
+      text-align: center;
+      margin: 20px auto;
+      width: 300px;
+      transition: background-color 0.3s ease;
+    }
+
+    #displayText:hover {
+      background-color: #333;
+      color: #f7f7f7;
+    }
+  </style>
+</head>
+<body>
+  <p id="displayText"></p>
+
+  <script>
+    var texts = ["متن ۱", "متن ۲", "متن ۳", "متن ۴", "متن ۵"];
+    var currentIndex = 0;
+
+    function changeText() {
+      document.getElementById("displayText").innerHTML = texts[currentIndex];
+      currentIndex = (currentIndex + 1) % texts.length;
+      setTimeout(changeText, 2000); // تاخیر ۲ ثانیه‌ای بین تغییرات
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      changeText();
+    });
+  </script>
+</body>
+</html>

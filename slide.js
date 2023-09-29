@@ -53,3 +53,20 @@ const myslide = document.querySelectorAll(".myslide"),
         myslide[counter - 1].style.display = "block";
         dot[counter - 1].className += " active";
     }
+
+
+    
+    
+ // نمایش کلمات به ترتیب
+ var texts = ["لیگ اسپانیا","رقابتهای باشگاهی","رقابتهای ملی","آمار بازیکنان","تصاویر"];
+    var currentIndex = 0;
+
+    function changeText() {
+      document.getElementById("displayText").innerHTML = texts[currentIndex];
+      currentIndex = (currentIndex + 1) % texts.length;
+      setTimeout(changeText, 2000); // تاخیر ۲ ثانیه‌ای بین تغییرات
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      changeText();
+    });

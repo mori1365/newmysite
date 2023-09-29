@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #wordContainer{
+            display: flex;
+            align-items: center;
+            direction: rtl;
+        }
+        .word {
+            display: none;
+            color: blue;
+            font-size: 30px;
+            border-radius: 5px;
+            text-align: center;
+            margin-right: 10px;
+        }
+        .visible {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="wordContainer">
+        <h1>dlsjfkghshrg</h1>
+        <br>
+        <span class="word visible">یسقفل ۱</span>
+        <span class="word">بیغا ۲</span>
+        <span class="word">یسل ۳</span>
+        <span class="word">سیقفل ۴</span>
+        <span class="word">ظیبلسث ۵</span>
+    </div>
+
+    <script>
+        var words = document.querySelectorAll('.word');
+        var currentWordIndex = 0;
+
+        function toggleWords() {
+            var currentWord = words[currentWordIndex];
+            currentWord.classList.remove('visible');
+            currentWordIndex = (currentWordIndex + 1) % words.length;
+            var nextWord = words[currentWordIndex];
+            nextWord.classList.add('visible');
+            setTimeout(toggleWords, 3000);
+        }
+
+        toggleWords();
+    </script>
+</body>
+</html>
