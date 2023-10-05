@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .myBtn{
+            cursor: pointer;
+            background-color: blue;
+            color: #fff;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal img {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 500px;
+            border: 10px solid #f1f1f1; /* این خط بردار را اضافه می‌کند */
+            border-radius: 5px; /* این خط بردار را گرد می‌کند */
+        }
+        .modal .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .modal .close:hover,
+        .modal .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .hover-button {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            font-size: 18px;
+            transition: background-color 0.5s ease-in-out;
+        }
+        
+        .hover-button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: #ff0;
+            transition: width 0.5s ease-in-out;
+            color: black;
+        }
+        
+        .hover-button:hover {
+            background-color: #555;
+            color: aquamarine;
+        }
+        
+        .hover-button:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<button class="myBtn" data-img="./image/23.png">باز کردن عکس اول</button>
+
+<div class="modal">
+    <span class="close">×</span>
+    <img class="modal-content">
+</div>
+
+<button class="myBtn" data-img="./image/20230926205513_[fpdl.in]_soccer-player-attack_336913-9_full.jpg">باز کردن عکس دوم</button>
+
+<div class="modal">
+    <span class="close">×</span>
+    <img class="modal-content">
+</div>
+<button class="myBtn" data-img="./image/20230926205513_[fpdl.in]_soccer-player-attack_336913-9_full.jpg">باز کردن عکس سوم</button>
+
+<div class="modal">
+    <span class="close">×</span>
+    <img class="modal-content">
+</div>
+<button class="hover-button">دکمه</button>
+
+<script>
+var modals = document.getElementsByClassName("modal");
+var btns = document.getElementsByClassName("myBtn");
+var imgs = document.getElementsByClassName("modal-content");
+var spans = document.getElementsByClassName("close");
+
+for(let i=0; i<btns.length; i++){
+    btns[i].onclick = function(){
+        modals[i].style.display = "block";
+        imgs[i].src = this.getAttribute('data-img');
+    }
+    spans[i].onclick = function() { 
+        modals[i].style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

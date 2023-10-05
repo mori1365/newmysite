@@ -76,27 +76,37 @@
     <div class="bio">
         <div class="text">
             <h1>PROEVELETION</h1>
-        <h3>SOCCER2017</h3>
-        <div class="bio2"><h1>ویژگی های سایت:</h1><div id="displayText"></div></div>
+            <h3>SOCCER2017</h3>
+            <div class="bio2">
+                <h1>ویژگی های سایت:</h1>
+                <div id="displayText"></div>
+            </div>
         </div>
         <div class="jelly-box">
             <img src="./image/23.png" alt="" width="350px">
         </div>
     </div>
-    <div class="spanish">
-        <div class="tab"><h1>لیگ اسپانیا</h1></div>
-        <div class="head">
-            <button onclick="ful()">جدول کلی</button>
-            <button onclick="leage1()">2016/2017</button>
-            <button onclick="leage2()">2017/2018</button>
-            <button onclick="leage3()">2018/2019</button>
-            <button onclick="leage4()">2019/2020</button>
-            <button onclick="leage5()">2020/2021</button>
-            <button onclick="leage6()">2021/2022</button>
-            <button onclick="leage7()">2022/2023</button>
-        </div>
+    <!-- .......accordion...... -->
+    <div class="accordion">
+        <div class="league" onclick="plus()">لالیگا اسپانیا</div>
+        <div class="league1" onclick="onplus()">لالیگا اسپانیا</div>
+        <li class="showleague">
+            <button onclick="showImage('./image/2016-2017.jpg')">2016/2017
+            </button>
+            <button onclick="showImage('./image/2017-2018.jpg')">2017/2018</button>
+            <button onclick="showImage('./image/2018-2019.jpg')">2018/2019</button>
+            <button onclick="showImage('./image/2019-2020.jpg')">2019/2020</button>
+            <button onclick="showImage('./image/2020-2021.jpg')">2020/2021</button>
+            <button onclick="showImage('./image/2021-2022.jpg')">2021/2022</button>
+            <button onclick="showImage('./image/2022-2023.jpg')">2022/2023</button>
+        </li>
+    </div>
+    <div class="overlay" onclick="hideImage();">
+        <img id="overlayImage" src="">
+        <p id="overlayText"></p>
     </div>
     
+
     <script src="slide.js"></script>
 </body>
 

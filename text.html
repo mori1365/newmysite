@@ -1,83 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .fullscreen-box {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    .fullscreen-box img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-    }
-
-    .close-button {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #fff;
-      color: #333;
-      padding: 10px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      z-index: 10000;
-    }
-
-    .zoom-button {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background-color: #fff;
-      color: #333;
-      padding: 10px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      z-index: 10000;
-    }
-  </style>
-  <script>
-    function openFullscreenImage(imageSrc) {
-      var fullscreenBox = document.createElement("div");
-      fullscreenBox.classList.add("fullscreen-box");
-
-      var image = document.createElement("img");
-      image.src = imageSrc;
-
-      var closeButton = document.createElement("div");
-      closeButton.classList.add("close-button");
-      closeButton.textContent = "بستن";
-      closeButton.addEventListener("click", function() {
-        document.body.removeChild(fullscreenBox);
-      });
-
-      var zoomButton = document.createElement("div");
-      zoomButton.classList.add("zoom-button");
-      zoomButton.textContent = "زوم";
-      zoomButton.addEventListener("click", function() {
-        image.classList.toggle("zoomed");
-      });
-
-      fullscreenBox.appendChild(image);
-      fullscreenBox.appendChild(closeButton);
-      fullscreenBox.appendChild(zoomButton);
-
-      document.body.appendChild(fullscreenBox);
-    }
-  </script>
+    <style>
+        #overlay {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        #image-popup {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        #image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        #close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 8px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <button onclick="openFullscreenImage('./image/23.png')">عکس 1</button>
-  <button onclick="openFullscreenImage('./image/20230926205513_[fpdl.in]_soccer-player-attack_336913-9_full.jpg')">عکس 2</button>
-  <button onclick="openFullscreenImage('./')">عکس 3</button>
+    <button class="open-btn" data-image="./image/20230926205513_[fpdl.in]_soccer-player-attack_336913-9_full.jpg">بازکردن عکس 1</button>
+    <button class="open-btn" data-image="./image/20230926205513_[fpdl.in]_soccer-player-attack_336913-9_full.jpg">بازکردن عکس 2</button>
+    <button class="open-btn" data-image="./image/20230926205513_[fpdl.in]_soccer-player-attack_336913-9_full.jpg">بازکردن عکس 3</button>
+  
+    <div id="overlay">
+        <div id="image-popup">
+            <img id="image" src="" alt="عکس">
+            <span id="close-btn">x</span>
+        </div>
+    </div>
+  
+    <script>
+        var openBtns = document.querySelectorAll(".open-btn");
+        var overlay = document.getElementById("overlay");
+        var imagePopup = document.getElementById("image-popup");
+        var image = document.getElementById("image");
+        var closeBtn = document.getElementById("close-btn");
+      
+        openBtns.forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                var imagePath = this.getAttribute("data-image");
+                image.src = imagePath;
+                overlay.style.display = "block";
+                imagePopup.style.display = "block";
+            });
+        });
+      
+        closeBtn.addEventListener("click", function() {
+            overlay.style.display = "none";
+            imagePopup.style.display = "none";
+        });
+    </script>
 </body>
 </html>

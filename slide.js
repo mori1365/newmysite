@@ -70,3 +70,35 @@ const myslide = document.querySelectorAll(".myslide"),
     document.addEventListener("DOMContentLoaded", function() {
       changeText();
     });
+
+
+
+
+
+function plus(){
+    document.querySelector(".showleague").style.display = "block";
+    document.querySelector(".league").style.display = "none";
+    document.querySelector(".league1").style.display = "block";
+}
+function onplus(){
+    document.querySelector(".showleague").style.display = "none";
+    document.querySelector(".league").style.display = "block";
+    document.querySelector(".league1").style.display = "none";
+}
+
+
+// عکس
+        function showImage(imageSrc, text) {
+            var overlay = document.querySelector('.overlay');
+            var overlayImage = document.querySelector('#overlayImage');
+            var overlayText = document.querySelector('#overlayText');
+
+            overlayImage.src = imageSrc;
+            overlayText.textContent = text;
+            overlay.style.display = 'flex';
+        }
+
+        function hideImage() {
+            var overlay = document.querySelector('.overlay');
+            overlay.style.display = 'none';
+        }
